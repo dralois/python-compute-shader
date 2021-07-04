@@ -1,2 +1,2 @@
 EXPORTS
-PyInit_ComputeShader PyInit_ComputeShader
+	PyInit_ComputeShader

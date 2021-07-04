@@ -1,4 +1,4 @@
-from Bin import ComputeShader as CS
+import ComputeShader as CS
 import struct
 
 CS.StartTimer()

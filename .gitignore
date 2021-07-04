@@ -5,6 +5,7 @@
 
 __pycache__
 
-Bin
-Temp
-Release
+[Bb]in
+[Tt]emp
+[Rr]elease
+[Bb]uild
