@@ -163,6 +163,9 @@ PyObject * UseCS(PyObject * self, PyObject * args) {
 
 	glUseProgram(cs);
 	glDispatchCompute(x, y, z);
+
+	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+
 	Py_RETURN_NONE;
 }
 

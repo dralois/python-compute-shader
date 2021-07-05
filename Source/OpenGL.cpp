@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 
+decltype(_glMemoryBarrier)* glMemoryBarrier;
 decltype(_glBindBuffer) * glBindBuffer;
 decltype(_glGenBuffers) * glGenBuffers;
 decltype(_glBufferData) * glBufferData;
@@ -155,6 +156,7 @@ bool InitializeGL() {
 	glBeginQuery = (decltype(_glBeginQuery) *)wglGetProcAddress("glBeginQuery");
 	glEndQuery = (decltype(_glEndQuery) *)wglGetProcAddress("glEndQuery");
 
+	glMemoryBarrier = (decltype(_glMemoryBarrier) *)wglGetProcAddress("glMemoryBarrier");
 	glBindBuffer = (decltype(_glBindBuffer) *)wglGetProcAddress("glBindBuffer");
 	glGenBuffers = (decltype(_glGenBuffers) *)wglGetProcAddress("glGenBuffers");
 	glBufferData = (decltype(_glBufferData) *)wglGetProcAddress("glBufferData");
@@ -181,6 +183,11 @@ bool InitializeGL() {
 	glGetIntegeri_v = (decltype(_glGetIntegeri_v) *)wglGetProcAddress("glGetIntegeri_v");
 	glGetQueryObjecti64v = (decltype(_glGetQueryObjecti64v) *)wglGetProcAddress("glGetQueryObjecti64v");
 	glGetQueryObjectiv = (decltype(_glGetQueryObjectiv) *)wglGetProcAddress("glGetQueryObjectiv");
+
+	if (!glMemoryBarrier) {
+		errorMessage = "glMemoryBarrier not loaded!";
+		return false;
+	}
 
 	if (!glBindBuffer) {
 		errorMessage = "glBindBuffer not loaded!";

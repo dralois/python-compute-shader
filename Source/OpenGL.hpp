@@ -57,6 +57,9 @@ const GLenum GL_QUERY_RESULT                        = 0x8866;
 const GLenum GL_QUERY_RESULT_AVAILABLE              = 0x8867;
 const GLenum GL_TIME_ELAPSED                        = 0x88BF;
 
+const GLbitfield GL_SHADER_STORAGE_BARRIER_BIT      = 0x00002000;
+
+GLvoid __stdcall _glMemoryBarrier(GLbitfield barriers);
 GLvoid __stdcall _glBindBuffer(GLenum target, GLuint buffer);
 GLvoid __stdcall _glGenBuffers(GLsizei n, GLuint * buffers);
 GLvoid __stdcall _glBufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage);
@@ -92,6 +95,7 @@ GLvoid __stdcall _glBeginQuery(GLenum target, GLuint id);
 GLvoid __stdcall _glEndQuery(GLenum target);
 
 
+extern decltype(_glMemoryBarrier) * glMemoryBarrier;
 extern decltype(_glBindBuffer) * glBindBuffer;
 extern decltype(_glGenBuffers) * glGenBuffers;
 extern decltype(_glBufferData) * glBufferData;
